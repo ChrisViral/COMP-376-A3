@@ -1,0 +1,19 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Custom for Visual Studio
+*.cs     	diff=csharp
+*.sln        	text eol=crlf
+*.csproj     	text eol=crlf
+*.DotSettings	text eol=crlf
+
+# Standard to msysgit
+*.pdf	diff=astextplain
+
+# Collapse Unity-generated files on GitHub
+*.asset		linguist-generated
+*.anim		linguist-generated
+*.mat		linguist-generated
+*.meta		linguist-generated
+*.prefab	linguist-generated
+*.unity		linguist-generated
