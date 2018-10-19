@@ -1,8 +1,8 @@
-﻿using SpaceShooter.Physics;
-using SpaceShooter.Utils;
+﻿using PlanetaryEscape.Physics;
+using PlanetaryEscape.Utils;
 using UnityEngine;
 
-namespace SpaceShooter.Players
+namespace PlanetaryEscape.Players
 {
     /// <summary>
     /// Ship shield

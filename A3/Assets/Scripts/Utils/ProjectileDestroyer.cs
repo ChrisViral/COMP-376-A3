@@ -1,8 +1,8 @@
-﻿using SpaceShooter.Physics;
-using SpaceShooter.Players;
+﻿using PlanetaryEscape.Physics;
+using PlanetaryEscape.Players;
 using UnityEngine;
 
-namespace SpaceShooter.Utils
+namespace PlanetaryEscape.Utils
 {
     /// <summary>
     /// Player projectile destroyer

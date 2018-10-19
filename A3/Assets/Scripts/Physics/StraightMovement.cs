@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace SpaceShooter.Physics
+namespace PlanetaryEscape.Physics
 {
     /// <summary>
     /// Gives an object a constant forward motion upon load

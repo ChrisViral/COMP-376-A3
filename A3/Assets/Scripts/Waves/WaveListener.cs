@@ -1,7 +1,7 @@
-﻿using SpaceShooter.Utils;
+﻿using PlanetaryEscape.Utils;
 using UnityEngine;
 
-namespace SpaceShooter.Waves
+namespace PlanetaryEscape.Waves
 {
     [RequireComponent(typeof(WaveController))]
     public class WaveListener : MonoBehaviour

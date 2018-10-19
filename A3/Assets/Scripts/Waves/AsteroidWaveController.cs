@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace SpaceShooter.Waves
+namespace PlanetaryEscape.Waves
 {
     /// <summary>
     /// Asteroid generation wave controller

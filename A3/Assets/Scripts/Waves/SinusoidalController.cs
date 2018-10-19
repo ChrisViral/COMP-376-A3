@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using SpaceShooter.Physics;
+using PlanetaryEscape.Physics;
 using UnityEngine;
 
-namespace SpaceShooter.Waves
+namespace PlanetaryEscape.Waves
 {
     /// <summary>
     /// Sinusoidal movement enemy wave generator

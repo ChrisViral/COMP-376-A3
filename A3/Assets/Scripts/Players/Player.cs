@@ -1,9 +1,9 @@
-﻿using SpaceShooter.Physics;
+﻿using PlanetaryEscape.Extensions;
+using PlanetaryEscape.Physics;
 using UnityEngine;
-using UnityEngine.UI;
-using Bounds = SpaceShooter.Utils.Bounds;
+using Bounds = PlanetaryEscape.Utils.Bounds;
 
-namespace SpaceShooter.Players
+namespace PlanetaryEscape.Players
 {
     /// <summary>
     /// Player object

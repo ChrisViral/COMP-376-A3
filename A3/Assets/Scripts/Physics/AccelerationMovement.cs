@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace SpaceShooter.Physics
+namespace PlanetaryEscape.Physics
 {
     /// <summary>
     /// Moves the background in specific ways

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace SpaceShooter.Physics
+namespace PlanetaryEscape.Physics
 {
     /// <summary>
     /// Gives a figure eight movement to an object

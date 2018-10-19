@@ -1,9 +1,9 @@
-﻿using SpaceShooter.Physics;
-using SpaceShooter.Players;
-using SpaceShooter.Waves;
+﻿using PlanetaryEscape.Physics;
+using PlanetaryEscape.Players;
+using PlanetaryEscape.Waves;
 using UnityEngine;
 
-namespace SpaceShooter.Utils
+namespace PlanetaryEscape.Utils
 {
     /// <summary>
     /// Contact destructor object

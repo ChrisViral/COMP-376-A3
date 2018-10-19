@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace SpaceShooter.Utils
+namespace PlanetaryEscape.Utils
 {
     /// <summary>
     /// 2D rectangular boundaries limiter

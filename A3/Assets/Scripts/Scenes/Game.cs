@@ -1,14 +1,15 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using SpaceShooter.Physics;
-using SpaceShooter.Players;
-using SpaceShooter.UI;
-using SpaceShooter.Waves;
+using PlanetaryEscape.Extensions;
+using PlanetaryEscape.Physics;
+using PlanetaryEscape.Players;
+using PlanetaryEscape.UI;
+using PlanetaryEscape.Waves;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SpaceShooter.Scenes
+namespace PlanetaryEscape.Scenes
 {
     /// <summary>
     /// Gameplay flow controller

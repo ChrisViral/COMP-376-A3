@@ -1,7 +1,7 @@
-﻿using SpaceShooter.Utils;
+﻿using PlanetaryEscape.Utils;
 using UnityEngine;
 
-namespace SpaceShooter.Physics
+namespace PlanetaryEscape.Physics
 {
     /// <summary>
     /// Physical object abstract class

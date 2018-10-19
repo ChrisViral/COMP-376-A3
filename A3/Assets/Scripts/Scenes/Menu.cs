@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using SpaceShooter.UI;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
-namespace SpaceShooter.Scenes
+namespace PlanetaryEscape.Scenes
 {
     /// <summary>
     /// Menu flow controller

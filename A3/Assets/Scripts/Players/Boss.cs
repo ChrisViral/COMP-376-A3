@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using SpaceShooter.Physics;
-using SpaceShooter.Scenes;
-using SpaceShooter.UI;
-using SpaceShooter.Utils;
+using PlanetaryEscape.Physics;
+using PlanetaryEscape.Scenes;
+using PlanetaryEscape.UI;
+using PlanetaryEscape.Utils;
 using UnityEngine;
 
-namespace SpaceShooter.Players
+namespace PlanetaryEscape.Players
 {
     /// <summary>
     /// Boss ship

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Highscore = SpaceShooter.HighscoreController.Highscore;
+using Highscore = PlanetaryEscape.HighscoreController.Highscore;
 
-namespace SpaceShooter.UI
+namespace PlanetaryEscape.UI
 {
     public class HighscoreWindow : MonoBehaviour
     {

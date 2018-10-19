@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace SpaceShooter
+namespace PlanetaryEscape.Utils
 {
     /// <summary>
     /// Game boundaries limiter

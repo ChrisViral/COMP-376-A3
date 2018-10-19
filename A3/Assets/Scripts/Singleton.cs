@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace SpaceShooter
+namespace PlanetaryEscape
 {
     /// <summary>
     /// Immortal singleton base class

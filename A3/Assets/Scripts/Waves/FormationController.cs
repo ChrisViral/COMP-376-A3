@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using SpaceShooter.Players;
+using PlanetaryEscape.Players;
 using UnityEngine;
 
-namespace SpaceShooter.Waves
+namespace PlanetaryEscape.Waves
 {
     /// <summary>
     /// V-Formation enemy wave generator
