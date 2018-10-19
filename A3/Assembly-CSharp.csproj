@@ -65,12 +65,10 @@
     <Compile Include="Assets\Scripts\Extensions\StreamReaderExtensions.cs" />
     <Compile Include="Assets\Scripts\GameLogic.cs" />
     <Compile Include="Assets\Scripts\HighscoreController.cs" />
-    <Compile Include="Assets\Scripts\Physics\AccelerationMovement.cs" />
     <Compile Include="Assets\Scripts\Physics\Bolt.cs" />
     <Compile Include="Assets\Scripts\Physics\FigureEightMovement.cs" />
     <Compile Include="Assets\Scripts\Physics\PhysicsObject.cs" />
     <Compile Include="Assets\Scripts\Physics\RandomRotation.cs" />
-    <Compile Include="Assets\Scripts\Physics\SinusoidalMovement.cs" />
     <Compile Include="Assets\Scripts\Physics\StraightMovement.cs" />
     <Compile Include="Assets\Scripts\Players\Boss.cs" />
     <Compile Include="Assets\Scripts\Players\Core.cs" />
@@ -86,13 +84,10 @@
     <Compile Include="Assets\Scripts\UI\HighscoreWindow.cs" />
     <Compile Include="Assets\Scripts\UI\Progressbar.cs" />
     <Compile Include="Assets\Scripts\Utils\AudioObject.cs" />
-    <Compile Include="Assets\Scripts\Utils\AutoDestroyParticle.cs" />
     <Compile Include="Assets\Scripts\Utils\BackgroundScroller.cs" />
     <Compile Include="Assets\Scripts\Utils\Bounds.cs" />
-    <Compile Include="Assets\Scripts\Utils\CameraAspectRatio.cs" />
     <Compile Include="Assets\Scripts\Utils\ContactDestroy.cs" />
     <Compile Include="Assets\Scripts\Utils\DestroyOnExit.cs" />
-    <Compile Include="Assets\Scripts\Utils\GameBoundary.cs" />
     <Compile Include="Assets\Scripts\Utils\MaterialBlinker.cs" />
     <Compile Include="Assets\Scripts\Utils\MovingAverage.cs" />
     <Compile Include="Assets\Scripts\Utils\PausableObject.cs" />
@@ -100,7 +95,6 @@
     <Compile Include="Assets\Scripts\Waves\AsteroidWaveController.cs" />
     <Compile Include="Assets\Scripts\Waves\EnemyWaveController.cs" />
     <Compile Include="Assets\Scripts\Waves\FormationController.cs" />
-    <Compile Include="Assets\Scripts\Waves\SinusoidalController.cs" />
     <Compile Include="Assets\Scripts\Waves\WaveController.cs" />
     <Compile Include="Assets\Scripts\Waves\WaveListener.cs" />
     <None Include="Assets\_MK\MKGlow\Shader\Variants_Luminance\MK_LuminanceEmissive.shader" />

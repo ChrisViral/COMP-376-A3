@@ -2,6 +2,7 @@
 using PlanetaryEscape.Physics;
 using UnityEngine;
 using Bounds = PlanetaryEscape.Utils.Bounds;
+using Physic = UnityEngine.Physics;
 
 namespace PlanetaryEscape.Players
 {
@@ -24,6 +25,12 @@ namespace PlanetaryEscape.Players
         [SerializeField]
         private Shield shield;
         [SerializeField]
+        private Camera playerCamera;
+        [SerializeField]
+        private RectTransform crosshairCanvas, crosshair;
+        [SerializeField]
+        private LayerMask enemyLayer;
+        [SerializeField]
         private Animator[] lives;
         [SerializeField, Header("Powerup")]
         private AudioClip powerupSound;
@@ -31,6 +38,9 @@ namespace PlanetaryEscape.Players
         private float powerupVolume;
         [SerializeField]
         private bool invulnerable;
+
+        //Private fields
+        private Rect screen;
         #endregion
 
         #region Properties
@@ -128,15 +138,34 @@ namespace PlanetaryEscape.Players
 
         #region Functions
         //Set first life indicator to true
-        private void Start() => this.lives[0].SetTrigger("Toggle");
+        private void Start()
+        {
+            this.lives[0].SetTrigger("Toggle");
+            this.screen = this.crosshairCanvas.rect;
+        }
 
         protected override void OnUpdate()
         {
             //If fire is pressed and enough time has elapsed since last fire, spawn a new shot
-            if (this.Controllable && Input.GetButton("Fire"))
+            if (this.Controllable)
             {
-                FireGun();
+                if (Input.GetButton("Fire")) { FireGun(); }
+                
+                Vector3 screenPosition;
+                if (Physic.Raycast(this.gun.position, this.gun.forward, out RaycastHit hit, 90f, this.enemyLayer, QueryTriggerInteraction.Collide))
+                {
+                    screenPosition = hit.point;
+                }
+                else
+                {
+                    screenPosition = this.transform.position;
+                    screenPosition.z += 90f;
+                }
+
+                screenPosition = this.playerCamera.WorldToViewportPoint(screenPosition);
+                this.crosshair.anchoredPosition = new Vector2(screenPosition.x * this.screen.width, screenPosition.y  * this.screen.height);
             }
+            
         }
         
         protected override void OnFixedUpdate()

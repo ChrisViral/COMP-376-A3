@@ -15,7 +15,7 @@ namespace PlanetaryEscape.Utils
         private float xMin;
         [SerializeField]
         private float xMax;
-        [SerializeField, Header("Z axis bounds")]
+        [SerializeField, Header("Y axis bounds")]
         private float yMin;
         [SerializeField]
         private float yMax;

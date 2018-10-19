@@ -11,7 +11,7 @@ namespace PlanetaryEscape.Players
     /// <summary>
     /// Boss ship
     /// </summary>
-    [DisallowMultipleComponent, RequireComponent(typeof(FigureEightMovement), typeof(AccelerationMovement))]
+    [DisallowMultipleComponent, RequireComponent(typeof(FigureEightMovement))]
     public class Boss : Ship
     {
         #region Fields
@@ -200,11 +200,6 @@ namespace PlanetaryEscape.Players
             this.player = GameLogic.CurrentGame.player;
             this.healthbar = GameLogic.CurrentGame.bossProgressbar;
             this.maxHP = this.hp = this.maxHealth * (GameLogic.IsHard ? 2 : 1);
-
-            //Setup arrival, then wait for arrival
-            AccelerationMovement mover = GetComponent<AccelerationMovement>();
-            mover.StartMovement(AccelerationMovement.MovementMode.APPROACH);
-            yield return new WaitForSeconds(Mathf.Abs(mover.approachSpeed / mover.acceleration));
 
             //Start moving then wait before shooting
             GetComponent<FigureEightMovement>().enabled = true;

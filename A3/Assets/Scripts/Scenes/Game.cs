@@ -22,8 +22,6 @@ namespace PlanetaryEscape.Scenes
         [SerializeField, Header("Gameplay")]
         internal Player player;
         [SerializeField]
-        private AccelerationMovement background;
-        [SerializeField]
         private float endGameWait;
         [SerializeField, Header("UI")]
         private GameObject pausePanel;
@@ -118,8 +116,6 @@ namespace PlanetaryEscape.Scenes
             this.gameoverLabel.text = "Congratulations!";
 
             //Fade out screen
-            this.background.StartMovement(AccelerationMovement.MovementMode.ACCELERATE);
-            this.player.GetComponent<AccelerationMovement>().StartMovement(AccelerationMovement.MovementMode.ACCELERATE);
             this.uiAnimator.SetTrigger("End");
         }
 
@@ -229,7 +225,6 @@ namespace PlanetaryEscape.Scenes
             //Set important stuff
             this.uiAnimator.SetFloat("BossSpeed", this.bossUISpeed);
             this.uiAnimator.SetFloat("EndSpeed", this.endUISpeed);
-            this.background.StartMovement(AccelerationMovement.MovementMode.APPROACH);
             this.asteroidController = Instantiate(this.asteroids).GetComponent<AsteroidWaveController>();
             this.asteroidController.StartWave();
             StartRandomController();

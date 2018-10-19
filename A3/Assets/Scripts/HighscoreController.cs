@@ -364,7 +364,7 @@ namespace PlanetaryEscape
                 //Catch parse exceptions
                 catch (Exception e)
                 {
-                    this.LogException(e, "Error encountered while loading Highscore");
+                    this.LogException(e);
                 }
             }
 
