@@ -133,7 +133,7 @@ namespace PlanetaryEscape.Players
         protected override void OnUpdate()
         {
             //If fire is pressed and enough time has elapsed since last fire, spawn a new shot
-            if (this.Controllable && Input.GetButton("Fire1"))
+            if (this.Controllable && Input.GetButton("Fire"))
             {
                 FireGun();
             }
@@ -144,7 +144,7 @@ namespace PlanetaryEscape.Players
             if (this.Controllable)
             {
                 //Movement speed
-                this.rigidbody.velocity = new Vector3(Input.GetAxis("Horizontal") * this.speed, 0f, Input.GetAxis("Vertical") * this.speed);
+                this.rigidbody.velocity = new Vector3(Input.GetAxis("Horizontal") * this.speed, Input.GetAxis("Vertical") * this.speed);
                 //Limit to game bounds
                 this.rigidbody.position = this.gameLimits.BoundVector(this.rigidbody.position);
                 //Call Ship.FixedUpdate()

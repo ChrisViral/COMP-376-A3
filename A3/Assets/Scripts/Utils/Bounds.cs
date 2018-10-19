@@ -16,9 +16,9 @@ namespace PlanetaryEscape.Utils
         [SerializeField]
         private float xMax;
         [SerializeField, Header("Z axis bounds")]
-        private float zMin;
+        private float yMin;
         [SerializeField]
-        private float zMax;
+        private float yMax;
         #endregion
 
         #region Methods
@@ -27,7 +27,7 @@ namespace PlanetaryEscape.Utils
         /// </summary>
         /// <param name="v">Vector3 to clamp</param>
         /// <returns>Clamped vector</returns>
-        public Vector3 BoundVector(Vector3 v) => new Vector3(Mathf.Clamp(v.x, this.xMin, this.xMax), 0f, Mathf.Clamp(v.z, this.zMin, this.zMax));
+        public Vector3 BoundVector(Vector3 v) => new Vector3(Mathf.Clamp(v.x, this.xMin, this.xMax), Mathf.Clamp(v.y, this.yMin, this.yMax));
         #endregion
     }
 }

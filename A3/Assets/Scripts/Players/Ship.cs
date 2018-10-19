@@ -66,7 +66,7 @@ namespace PlanetaryEscape.Players
         /// </summary>
         protected virtual void Fire()
         {
-            Instantiate(this.bolt, this.gun.position, Quaternion.identity);
+            Instantiate(this.bolt, this.gun.position, this.bolt.transform.rotation);
             this.source.PlayOneShot(this.boltSound, this.shotVolume);
         }
         #endregion

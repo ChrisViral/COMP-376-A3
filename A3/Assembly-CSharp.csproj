@@ -91,6 +91,7 @@
     <Compile Include="Assets\Scripts\Utils\Bounds.cs" />
     <Compile Include="Assets\Scripts\Utils\CameraAspectRatio.cs" />
     <Compile Include="Assets\Scripts\Utils\ContactDestroy.cs" />
+    <Compile Include="Assets\Scripts\Utils\DestroyOnExit.cs" />
     <Compile Include="Assets\Scripts\Utils\GameBoundary.cs" />
     <Compile Include="Assets\Scripts\Utils\MaterialBlinker.cs" />
     <Compile Include="Assets\Scripts\Utils\MovingAverage.cs" />

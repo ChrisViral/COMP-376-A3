@@ -5,15 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
-  - Boundary
   - Projectile
   - Projectile_Enemy
   - Powerup
   - Shield
-  - Teleporter
-  - Teleporter_Enemy
-  - Teleporter_Left
-  - Teleporter_Right
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX
@@ -23,7 +19,7 @@ TagManager:
   - UI
   - 
   - 
-  - Background
+  - 
   - 
   - 
   - 
