@@ -54,7 +54,6 @@
   <ItemGroup>
     <Compile Include="Assets\_MK\MKGlow\Editor\MKGlowEditor.cs" />
     <Compile Include="Assets\JMO Assets\Cartoon FX Easy Editor\Editor\CFXEasyEditor.cs" />
-    <Compile Include="Assets\JMO Assets\WarFX\Editor\CFX_SpawnSystemEditor.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>E:/Chris/Documents/Repositories/COMP-376-A3/A3/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

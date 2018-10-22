@@ -13,7 +13,7 @@ namespace PlanetaryEscape.Physics
         /// <summary>
         /// This object's Rigidbody component
         /// </summary>
-        protected new Rigidbody rigidbody;
+        public Rigidbody Rigidbody { get; private set; }
         #endregion
 
         #region Virtual methods
@@ -27,7 +27,7 @@ namespace PlanetaryEscape.Physics
         private void Awake()
         {
             //Get Rigidbody from components
-            this.rigidbody = GetComponent<Rigidbody>();
+            this.Rigidbody = GetComponent<Rigidbody>();
 
             //Call children Awake method
             OnAwake();

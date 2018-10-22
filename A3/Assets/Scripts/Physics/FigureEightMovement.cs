@@ -38,7 +38,7 @@ namespace PlanetaryEscape.Physics
              * y = cos(2t)
              * Which we can then apply to our rigidbody */
             float t = this.ElapsedTime / this.period;
-            this.rigidbody.velocity = new Vector3(Mathf.Cos(t), 0f, Mathf.Cos(2 * t)) * this.maxSpeed;
+            this.Rigidbody.velocity = new Vector3(Mathf.Cos(t), 0f, Mathf.Cos(2 * t)) * this.maxSpeed;
         }
         #endregion
     }

@@ -13,7 +13,7 @@ namespace PlanetaryEscape.Waves
         [SerializeField]
         protected float delay;
         [SerializeField]
-        protected Vector3 spawn;
+        protected Vector3 spawnLocation;
 
         //private fields
         private Coroutine spawnRoutine;

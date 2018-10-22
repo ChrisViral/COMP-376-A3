@@ -16,7 +16,7 @@ namespace PlanetaryEscape.Physics
 
         #region Functions
         //Give the Rigidbody a random angular velocity
-        private void Start() => this.rigidbody.angularVelocity = Random.insideUnitSphere * this.maxRotation;
+        private void Start() => this.Rigidbody.angularVelocity = Random.insideUnitSphere * this.maxRotation;
         #endregion
     }
 }

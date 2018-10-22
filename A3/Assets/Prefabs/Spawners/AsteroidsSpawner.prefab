@@ -25,7 +25,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4411163594447656
 Transform:
@@ -51,11 +51,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95edd78503ad22d4aa80531a79a99b6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 3
-  spawn: {x: -6, y: 6, z: 17}
+  delay: 2
+  spawnLocation: {x: 0, y: 0, z: 40}
+  spawnSize: {x: 9, y: 4}
   asteroids:
   - {fileID: 1241360854899996, guid: 6df5c5efca7a79a4cb184763481b6110, type: 2}
   - {fileID: 1294425687811420, guid: 4c8a378243dc55d4fb101986e30598bf, type: 2}
   - {fileID: 1924377921241934, guid: 69677160dc6276c489002aeaa65f5d9b, type: 2}
-  max: 2
-  spawnTimeRange: {x: 1, y: 5}
+  max: 3
+  spawnTimeRange: {x: 1, y: 3}

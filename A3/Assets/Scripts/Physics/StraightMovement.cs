@@ -16,7 +16,7 @@ namespace PlanetaryEscape.Physics
 
         #region Functions
         //Set requested speed
-        private void Start() => this.rigidbody.velocity = Vector3.forward * this.speed;
+        private void Start() => this.Rigidbody.velocity = this.transform.forward * this.speed;
         #endregion
     }
 }

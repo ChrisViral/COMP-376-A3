@@ -1,9 +1,10 @@
-﻿using PlanetaryEscape.Utils;
+﻿using PlanetaryEscape.Players;
+using PlanetaryEscape.Utils;
 using UnityEngine;
 
 namespace PlanetaryEscape.Waves
 {
-    [RequireComponent(typeof(WaveController))]
+    [RequireComponent(typeof(EnemyWaveController))]
     public class WaveListener : MonoBehaviour
     {
         #region Fields
@@ -19,18 +20,6 @@ namespace PlanetaryEscape.Waves
         #endregion
 
         #region Methods
-        /// <summary>
-        /// Attaches this WaveListener instance to the given GameObject if possible, then returns it
-        /// </summary>
-        /// <param name="o">GameObject to attach to</param>
-        /// <returns>The passed GameObject instance</returns>
-        public GameObject AttachListener(GameObject o)
-        {
-            ContactDestroy destroyer = o.GetComponent<ContactDestroy>();
-            if (destroyer != null) { destroyer.Listener = this; }
-            return o;
-        }
-
         /// <summary>
         /// Call this to indicate a part of the wave has been killed
         /// </summary>

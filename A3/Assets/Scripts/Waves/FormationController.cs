@@ -30,8 +30,9 @@ namespace PlanetaryEscape.Waves
         /// </summary>
         protected override IEnumerator<YieldInstruction> Spawner()
         {
+
             //Spawn first enemy
-            SpawnEnemy().GetComponent<Enemy>().canShoot = GameLogic.IsHard;
+            SpawnEnemy().canShoot = GameLogic.IsHard;
 
             //Spawn remaining layers
             for (int i = 1; i < this.layers; i++)
@@ -41,8 +42,8 @@ namespace PlanetaryEscape.Waves
 
                 //Spawn both enemies side by side
                 float space = this.spacing * i;
-                SpawnEnemy(new Vector3(this.spawn.x - space, this.spawn.y, this.spawn.z)).GetComponent<Enemy>().canShoot = GameLogic.IsHard;
-                SpawnEnemy(new Vector3(this.spawn.x + space, this.spawn.y, this.spawn.z)).GetComponent<Enemy>().canShoot = GameLogic.IsHard;
+                SpawnEnemy(Vector3.right * space).canShoot = GameLogic.IsHard;
+                SpawnEnemy(Vector3.left  * space).canShoot = GameLogic.IsHard;
             }
         }
         #endregion

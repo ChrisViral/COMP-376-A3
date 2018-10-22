@@ -8,8 +8,15 @@ namespace PlanetaryEscape.Utils
     [DisallowMultipleComponent]
     public class DestroyOnExit : MonoBehaviour
     {
+        #region Fields
+        //Inspector fields
+        [SerializeField]
+        private GameObject toDestroy;
+        #endregion
+
         #region Methods
-        private void OnBecameInvisible() => Destroy(this.gameObject);
+        //Destroy the passed GO, or this one if the other is null
+        private void OnBecameInvisible() => Destroy(this.toDestroy ? this.toDestroy : this.gameObject);
         #endregion
     }
 }

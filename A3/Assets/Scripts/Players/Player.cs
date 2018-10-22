@@ -1,5 +1,6 @@
 ﻿using PlanetaryEscape.Extensions;
 using PlanetaryEscape.Physics;
+using PlanetaryEscape.Utils;
 using UnityEngine;
 using Bounds = PlanetaryEscape.Utils.Bounds;
 using Physic = UnityEngine.Physics;
@@ -21,7 +22,9 @@ namespace PlanetaryEscape.Players
         #region Fields
         //Inspector fields
         [SerializeField, Header("Player")]
-        private Bounds gameLimits; 
+        private Bounds gameLimits;
+        [SerializeField]
+        private float acceleration;
         [SerializeField]
         private Shield shield;
         [SerializeField]
@@ -36,8 +39,10 @@ namespace PlanetaryEscape.Players
         private AudioClip powerupSound;
         [SerializeField]
         private float powerupVolume;
-        [SerializeField]
+        [SerializeField, Header("Cheats")]
         private bool invulnerable;
+        [SerializeField, Range(0, MAX_LEVEL)]
+        private int startLevel;
 
         //Private fields
         private Rect screen;
@@ -48,11 +53,7 @@ namespace PlanetaryEscape.Players
         /// Current level of the player
         /// </summary>
         public int Level { get; private set; }
-
-        /// <summary>
-        /// If the Player can currently be controlled
-        /// </summary>
-        public bool Controllable { get; set; } = true;
+       
         #endregion
 
         #region Methods
@@ -95,9 +96,10 @@ namespace PlanetaryEscape.Players
             if (DecrementLevel() < 0)
             {
                 //Call base method
+                this.Rigidbody.drag = 0f;
                 base.Die();
                 //Notify for the game to end
-                GameLogic.CurrentGame.EndGame();
+                //GameLogic.CurrentGame.EndGame();
                 return true;
             }
 
@@ -141,7 +143,9 @@ namespace PlanetaryEscape.Players
         private void Start()
         {
             this.lives[0].SetTrigger("Toggle");
+            this.Level = this.startLevel;
             this.screen = this.crosshairCanvas.rect;
+            this.shield.gameObject.SetActive(true);
         }
 
         protected override void OnUpdate()
@@ -173,24 +177,31 @@ namespace PlanetaryEscape.Players
             if (this.Controllable)
             {
                 //Movement speed
-                this.rigidbody.velocity = new Vector3(Input.GetAxis("Horizontal") * this.speed, Input.GetAxis("Vertical") * this.speed);
+                this.Rigidbody.AddForce(new Vector3(Input.GetAxis("Horizontal") * this.acceleration, Input.GetAxis("Vertical") * this.acceleration));
+                this.Rigidbody.velocity.ClampTo(this.speed);
+
                 //Limit to game bounds
-                this.rigidbody.position = this.gameLimits.BoundVector(this.rigidbody.position);
-                //Call Ship.FixedUpdate()
-                base.OnFixedUpdate();
+                this.Rigidbody.position = this.gameLimits.BoundVector(this.Rigidbody.position);
             }
+
+            //Call Ship.OnFixedUpdate()
+            base.OnFixedUpdate();
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            if (this.invulnerable) { return; }
-
             //If the shield is inactive and hit, damage player
-            if (this.Controllable && !this.shield.Active)
+            if (!this.invulnerable && this.Controllable && !this.shield.Active)
             {
-                if (other.CompareTag("Projectile_Enemy") || (GameLogic.IsHard && other.CompareTag("Projectile") && other.GetComponent<Bolt>().CanHurtPlayer))
+                switch (other.tag)
                 {
-                    Die();
+                    case "Projectile_Enemy":
+                        if (other.GetComponent<Bolt>().Active) { Die(); }
+                        break;
+
+                    case "Enemy":
+                        if (!Die()) { other.GetComponent<Enemy>().Die(); }
+                        break;
                 }
             }
         }

@@ -90,8 +90,8 @@ namespace PlanetaryEscape.Players
                 switch (other.tag)
                 {
                     //Kill enemies
-                    case "Enemy":
-                        other.gameObject.GetComponent<ContactDestroy>()?.Explode();
+                    case "Asteroid":
+                        other.GetComponent<ContactDestroy>().Explode();
                         PlayClip();
                         break;
 
@@ -99,14 +99,6 @@ namespace PlanetaryEscape.Players
                     case "Projectile_Enemy":
                         Destroy(other.gameObject);
                         PlayClip();
-                        break;
-
-                    case "Projectile":
-                        if (GameLogic.IsHard && other.GetComponent<Bolt>().CanHurtPlayer)
-                        {
-                            Destroy(other.gameObject);
-                            PlayClip();
-                        }
                         break;
                 }
             }

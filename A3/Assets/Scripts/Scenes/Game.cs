@@ -71,7 +71,7 @@ namespace PlanetaryEscape.Scenes
         /// </summary>
         public int Score
         {
-            get { return this.score; }
+            get => this.score;
             set
             {
                 this.score = value;

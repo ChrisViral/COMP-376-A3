@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using PlanetaryEscape.Players;
 using UnityEngine;
 
 namespace PlanetaryEscape.Waves
@@ -11,11 +12,16 @@ namespace PlanetaryEscape.Waves
         #region Fields
         //Inspector fields
         [SerializeField]
-        protected GameObject enemy;
+        protected Enemy enemy;
         [SerializeField]
         protected float interval;
         [SerializeField]
         protected WaveListener listener;
+        [SerializeField]
+        private float heightVariation;
+
+        //Private fields
+        private float diff;
         #endregion
 
         #region Properties
@@ -27,23 +33,25 @@ namespace PlanetaryEscape.Waves
         
         #region Methods
         /// <summary>
-        /// Spawns one enemy at the default spawn location
-        /// </summary>
-        /// <returns>The created GameObject</returns>
-        protected GameObject SpawnEnemy() => SpawnEnemy(this.spawn);
-
-        /// <summary>
         /// Spawns one enemy at a given spawn location
         /// </summary>
-        /// <param name="position">Spawn position</param>
-        /// <returns>The created GameObject</returns>
-        protected GameObject SpawnEnemy(Vector3 position) => this.listener.AttachListener(Instantiate(this.enemy, position, Quaternion.identity));
+        /// <param name="offset">The offset from the regular spawn location</param>
+        /// <returns>The created Enemy</returns>
+        protected Enemy SpawnEnemy(Vector3 offset = new Vector3())
+        {
+            Enemy spawned = Instantiate(this.enemy, this.spawnLocation + offset + (Vector3.up * this.diff), Quaternion.identity);
+            spawned.Listener = this.listener;
+            return spawned;
+        }
 
         /// <summary>
         /// Spawns the enemy waves
         /// </summary>
         protected override IEnumerator<YieldInstruction> SpawnWave()
         {
+            //Get spawn height difference
+            this.diff = Random.Range(-this.heightVariation, this.heightVariation);
+
             //Setup listener
             this.listener.Count = this.Count;
 
