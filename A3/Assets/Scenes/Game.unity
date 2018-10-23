@@ -1542,6 +1542,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &624533551 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114272688888991862, guid: 95c292c82ff9a5a4ba71e16ad732a4b1,
+    type: 2}
+  m_PrefabInternal: {fileID: 1779907788}
+  m_Script: {fileID: 11500000, guid: 02879daf976026547a21df594c12276b, type: 3}
 --- !u!1 &671311841
 GameObject:
   m_ObjectHideFlags: 0
@@ -1925,7 +1931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38a52b09e9696d644953a15e65d648a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 624533551}
   endGameWait: 2
   pausePanel: {fileID: 2018193218}
   scoreLabel: {fileID: 196417566}
@@ -1936,12 +1942,13 @@ MonoBehaviour:
   nameField: {fileID: 1791222109}
   startPaused: 0
   waves: 5
-  asteroids: {fileID: 1123634390314820, guid: 942f717016ec0e24a98d7d7c562bcfa6, type: 2}
+  asteroids: {fileID: 114860476911455412, guid: 942f717016ec0e24a98d7d7c562bcfa6,
+    type: 2}
   enemies:
-  - {fileID: 1879099602090938, guid: 73b68580ec91163488e67fbf6bcb355e, type: 2}
-  - {fileID: 1879099602090938, guid: ca00472ac8bd38f4f894a2e78cbf0782, type: 2}
+  - {fileID: 114915710721668932, guid: ca00472ac8bd38f4f894a2e78cbf0782, type: 2}
+  - {fileID: 114717837170372724, guid: 73b68580ec91163488e67fbf6bcb355e, type: 2}
   powerup: {fileID: 1840904573860970, guid: fd6ce7073d9d21e4b81c5fc5929f2d5c, type: 2}
-  powerupSpawn: {x: 0, y: 0, z: 17}
+  powerupSpawn: {x: 0, y: 0, z: 20}
   boss: {fileID: 1170022312361778, guid: 9f9696a5f4ee26947bcf7107f7b00156, type: 2}
   bossSpawn: {x: 0, y: 0, z: 20}
   bossDelay: 6
@@ -3540,6 +3547,11 @@ Prefab:
     - target: {fileID: 114272688888991862, guid: 95c292c82ff9a5a4ba71e16ad732a4b1,
         type: 2}
       propertyPath: canShoot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114272688888991862, guid: 95c292c82ff9a5a4ba71e16ad732a4b1,
+        type: 2}
+      propertyPath: startLevel
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

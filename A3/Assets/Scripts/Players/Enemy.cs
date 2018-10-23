@@ -25,7 +25,7 @@ namespace PlanetaryEscape.Players
         /// <summary>
         /// The WaveListener this object is associated to this enemy
         /// </summary>
-        public WaveListener Listener { get; internal set; }
+        public EnemyWaveController Spawner { get; internal set; }
         #endregion
 
         #region Methods
@@ -40,7 +40,8 @@ namespace PlanetaryEscape.Players
             {
                 //Add score
                 GameLogic.CurrentGame.Score += this.score;
-                if (this.Listener != null) { this.Listener.OnKilled(); }
+                if (this.Spawner != null) { this.Spawner.OnKilled(); }
+                GetComponent<Animator>().enabled = false;
                 return true;
             }
 
@@ -73,7 +74,7 @@ namespace PlanetaryEscape.Players
         private void OnDestroy()
         {
             //Let the listener know the object has been destroyed if any is present
-            if (this.Listener != null) { this.Listener.OnDestroyed(); }
+            if (this.Spawner != null) { this.Spawner.OnDestroyed(); }
         }
         #endregion
     }

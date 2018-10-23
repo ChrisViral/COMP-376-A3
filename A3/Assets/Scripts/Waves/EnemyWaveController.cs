@@ -16,12 +16,11 @@ namespace PlanetaryEscape.Waves
         [SerializeField]
         protected float interval;
         [SerializeField]
-        protected WaveListener listener;
-        [SerializeField]
         private float heightVariation;
 
         //Private fields
         private float diff;
+        private int killed, destroyed;
         #endregion
 
         #region Properties
@@ -33,6 +32,25 @@ namespace PlanetaryEscape.Waves
         
         #region Methods
         /// <summary>
+        /// Call this to indicate a part of the wave has been killed
+        /// </summary>
+        public void OnKilled() => this.killed++;
+
+        /// <summary>
+        /// Call this to indicate a part of the wave has been destroyed
+        /// </summary>
+        public void OnDestroyed()
+        {
+            if (++this.destroyed == this.Count)
+            {
+                //If they have also all been killed, send a completion message
+                GameLogic.CurrentGame.WaveDestroyed(this.killed == this.Count);
+                //Destroy only this script
+                Destroy(this.gameObject);
+            }
+        }
+
+        /// <summary>
         /// Spawns one enemy at a given spawn location
         /// </summary>
         /// <param name="offset">The offset from the regular spawn location</param>
@@ -40,7 +58,7 @@ namespace PlanetaryEscape.Waves
         protected Enemy SpawnEnemy(Vector3 offset = new Vector3())
         {
             Enemy spawned = Instantiate(this.enemy, this.spawnLocation + offset + (Vector3.up * this.diff), Quaternion.identity);
-            spawned.Listener = this.listener;
+            spawned.Spawner = this;
             return spawned;
         }
 
@@ -51,9 +69,6 @@ namespace PlanetaryEscape.Waves
         {
             //Get spawn height difference
             this.diff = Random.Range(-this.heightVariation, this.heightVariation);
-
-            //Setup listener
-            this.listener.Count = this.Count;
 
             //First wave delay
             yield return new WaitForSeconds(this.delay);

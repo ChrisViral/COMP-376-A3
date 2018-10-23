@@ -8,6 +8,13 @@ namespace PlanetaryEscape.Physics
     [DisallowMultipleComponent, AddComponentMenu("Physics/Figure Eight Movement")]
     public class FigureEightMovement : PhysicsObject
     {
+        #region Constants
+        /// <summary>
+        /// Period of the Cosinus function (2*Pi)
+        /// </summary>
+        private const float cosPeriod = 6.283185f;
+        #endregion
+
         #region Fields
         //Inspector fields
         [SerializeField]
@@ -37,8 +44,8 @@ namespace PlanetaryEscape.Physics
              * x = cos(t)
              * y = cos(2t)
              * Which we can then apply to our rigidbody */
-            float t = this.ElapsedTime / this.period;
-            this.Rigidbody.velocity = new Vector3(Mathf.Cos(t), 0f, Mathf.Cos(2 * t)) * this.maxSpeed;
+            float t = (this.ElapsedTime / this.period) % cosPeriod;
+            this.Rigidbody.velocity = new Vector3(Mathf.Cos(t), Mathf.Cos(2 * t)) * this.maxSpeed;
         }
         #endregion
     }

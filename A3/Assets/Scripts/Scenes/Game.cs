@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using PlanetaryEscape.Extensions;
-using PlanetaryEscape.Physics;
 using PlanetaryEscape.Players;
 using PlanetaryEscape.UI;
 using PlanetaryEscape.Waves;
@@ -38,9 +36,9 @@ namespace PlanetaryEscape.Scenes
         [SerializeField, Header("Enemy waves")]
         private int waves;
         [SerializeField, Tooltip("Asteroid spawner")]
-        private GameObject asteroids;
+        private AsteroidWaveController asteroids;
         [SerializeField, Tooltip("Enemy spawners")]
-        private GameObject[] enemies;
+        private EnemyWaveController[] enemies;
         [SerializeField, Header("Powerup")]
         private GameObject powerup;
         [SerializeField]
@@ -56,7 +54,8 @@ namespace PlanetaryEscape.Scenes
         
         //Private fields
         private bool bossFight;
-        private WaveController asteroidController, enemyController;
+        private WaveController asteroidController;
+        private EnemyWaveController enemyController;
         #endregion
 
         #region Properties
@@ -146,7 +145,7 @@ namespace PlanetaryEscape.Scenes
         {
             if (this.waves-- > 0)
             {
-                this.enemyController = Instantiate(this.enemies[Random.Range(0, this.enemies.Length)]).GetComponent<WaveController>();
+                this.enemyController = Instantiate(this.enemies[Random.Range(0, this.enemies.Length)]);
                 this.enemyController.StartWave();
             }
             else { StartCoroutine(StartBossFight()); }
@@ -172,15 +171,21 @@ namespace PlanetaryEscape.Scenes
         /// <summary>
         /// Full enemy wave destroyed event
         /// </summary>
-        public void WaveDestroyed()
+        public void WaveDestroyed(bool successfully)
         {
-            this.Score *= 2;
-
-            if (this.player.Level < Player.MAX_LEVEL)
+            if (successfully)
             {
-                Instantiate(this.powerup, this.powerupSpawn, Quaternion.identity);
-                this.Log("A powerup has been created!");
+                this.Score *= 2;
+
+                if (this.player.Level < Player.MAX_LEVEL)
+                {
+                    Instantiate(this.powerup, this.powerupSpawn, Quaternion.identity);
+                    this.Log("A powerup has been created!");
+                }
             }
+
+            //Start the next wave
+            StartRandomController();
         }
 
         /// <summary>
@@ -225,17 +230,9 @@ namespace PlanetaryEscape.Scenes
             //Set important stuff
             this.uiAnimator.SetFloat("BossSpeed", this.bossUISpeed);
             this.uiAnimator.SetFloat("EndSpeed", this.endUISpeed);
-            this.asteroidController = Instantiate(this.asteroids).GetComponent<AsteroidWaveController>();
+            this.asteroidController = Instantiate(this.asteroids);
             this.asteroidController.StartWave();
             StartRandomController();
-        }
-
-        private void Update()
-        {
-            if (!this.bossFight && !this.enemyController.IsRunning)
-            {
-                    StartRandomController();
-            }
         }
 
         //Remove the OnPause event

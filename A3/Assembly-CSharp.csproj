@@ -99,7 +99,6 @@
     <Compile Include="Assets\Scripts\Waves\FormationController.cs" />
     <Compile Include="Assets\Scripts\Waves\SidewaysController.cs" />
     <Compile Include="Assets\Scripts\Waves\WaveController.cs" />
-    <Compile Include="Assets\Scripts\Waves\WaveListener.cs" />
     <None Include="Assets\_MK\MKGlow\Shader\Variants_Luminance\MK_LuminanceEmissive.shader" />
     <None Include="Assets\_MK\MKGlow\Shader\Variants_Selective\Illumin\MK_Illumin-Glossy.shader" />
     <None Include="Assets\_MK\MKGlow\Shader\Render\MKGlowExtractLuminance.shader" />

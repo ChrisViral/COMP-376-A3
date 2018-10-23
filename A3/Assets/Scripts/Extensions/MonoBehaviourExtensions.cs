@@ -2,7 +2,7 @@
 using UnityEngine;
 
 //ReSharper disable once CheckNamespace
-namespace PlanetaryEscape.Extensions
+namespace PlanetaryEscape
 {
     /// <summary>
     /// MonoBehaviour extension methods
