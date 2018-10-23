@@ -59,4 +59,4 @@ MonoBehaviour:
   - {fileID: 1294425687811420, guid: 4c8a378243dc55d4fb101986e30598bf, type: 2}
   - {fileID: 1924377921241934, guid: 69677160dc6276c489002aeaa65f5d9b, type: 2}
   max: 3
-  spawnTimeRange: {x: 1, y: 3}
+  spawnTimeRange: {x: 2, y: 4}

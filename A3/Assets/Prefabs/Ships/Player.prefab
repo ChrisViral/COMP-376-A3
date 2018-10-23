@@ -692,7 +692,7 @@ MonoBehaviour:
   shotVolume: 0.5
   fireRate: 0.25
   gun: {fileID: 4388409048834300}
-  canShoot: 0
+  canShoot: 1
   gameLimits:
     xMin: -5
     xMax: 5
@@ -712,8 +712,8 @@ MonoBehaviour:
   - {fileID: 0}
   powerupSound: {fileID: 8300000, guid: a4a9327e98855524c846cc8e2f559e96, type: 3}
   powerupVolume: 0.3
-  invulnerable: 1
-  startLevel: 2
+  invulnerable: 0
+  startLevel: 0
 --- !u!114 &114362235645780676
 MonoBehaviour:
   m_ObjectHideFlags: 1

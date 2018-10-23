@@ -108,6 +108,15 @@ namespace PlanetaryEscape.Players
         }
 
         /// <summary>
+        /// Kills the player
+        /// </summary>
+        public override void Explode()
+        {
+            GameLogic.CurrentGame.EndGame();
+            base.Explode();
+        }
+
+        /// <summary>
         /// Fires the weapon, according to the player's current level
         /// </summary>
         protected override void Fire()

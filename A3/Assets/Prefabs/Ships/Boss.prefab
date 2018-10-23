@@ -276,7 +276,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1961005634308618}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.2, y: -0.15, z: -2}
+  m_LocalPosition: {x: 4.2, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4318729665568080}
@@ -289,7 +289,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1297110327552702}
   m_LocalRotation: {x: 0.043619405, y: -0, z: -0, w: 0.9990483}
-  m_LocalPosition: {x: 0.02142857, y: 0, z: 0}
+  m_LocalPosition: {x: 0.02142857, y: -0.05, z: -0.0357}
   m_LocalScale: {x: 0.14285713, y: 0.101139426, z: 0.2488606}
   m_Children:
   - {fileID: 4626272501794658}
@@ -373,7 +373,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1471865343657580}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.2, y: -0.15, z: -2}
+  m_LocalPosition: {x: -4.2, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4318729665568080}
@@ -413,7 +413,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1170022312361778}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalPosition: {x: 0, y: 1, z: 20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4705390795583500}
@@ -775,7 +775,7 @@ MonoBehaviour:
   bolt: {fileID: 1593458016986504, guid: 18cc7d750d04f914789cd5ec98fc17ca, type: 2}
   boltSound: {fileID: 8300000, guid: 801714d6d0b2c3c4cbf22405aa13f89d, type: 3}
   shotVolume: 0.5
-  fireRate: 0.8
+  fireRate: 0.6
   gun: {fileID: 4047005425994804}
   canShoot: 0
   vulnerability: {fileID: 1350895036256318, guid: e712b3e881939d049984d10e6b6708b5,
@@ -834,7 +834,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8ef008b6122c1a4aa5129de5f5b640e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 0.5
+  maxSpeed: 1.25
   period: 4
 --- !u!114 &114630034162156342
 MonoBehaviour:
@@ -861,7 +861,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.8
+  m_Radius: 0.7
   m_Center: {x: 0, y: 0, z: -0.4}
 --- !u!198 &198382119903849198
 ParticleSystem:

@@ -390,9 +390,9 @@ RectTransform:
   m_Father: {fileID: 1633238801}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -290, y: -5}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 35, y: -5}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &196417566
@@ -1173,9 +1173,9 @@ RectTransform:
   m_Father: {fileID: 1633238801}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -275, y: 390}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 35, y: -60}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &476707827
@@ -1661,10 +1661,10 @@ RectTransform:
   m_Father: {fileID: 413280674}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 500, y: 800}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &749292742
 MonoBehaviour:
@@ -1731,7 +1731,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0000012776255}
+  m_AnchoredPosition: {x: 0, y: 0.000015132424}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &853777459
@@ -1941,7 +1941,7 @@ MonoBehaviour:
   endUISpeed: 0.4
   nameField: {fileID: 1791222109}
   startPaused: 0
-  waves: 5
+  waves: 2
   asteroids: {fileID: 114860476911455412, guid: 942f717016ec0e24a98d7d7c562bcfa6,
     type: 2}
   enemies:
@@ -1951,7 +1951,7 @@ MonoBehaviour:
   powerupSpawn: {x: 0, y: 0, z: 20}
   boss: {fileID: 1170022312361778, guid: 9f9696a5f4ee26947bcf7107f7b00156, type: 2}
   bossSpawn: {x: 0, y: 0, z: 20}
-  bossDelay: 6
+  bossDelay: 2
   bossProgressbar: {fileID: 1096615908}
 --- !u!4 &1020294531
 Transform:
@@ -3126,7 +3126,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1633238798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3157,7 +3157,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 600, y: 900}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
@@ -3544,16 +3544,6 @@ Prefab:
       propertyPath: lives.Array.data[2]
       value: 
       objectReference: {fileID: 1798683963}
-    - target: {fileID: 114272688888991862, guid: 95c292c82ff9a5a4ba71e16ad732a4b1,
-        type: 2}
-      propertyPath: canShoot
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114272688888991862, guid: 95c292c82ff9a5a4ba71e16ad732a4b1,
-        type: 2}
-      propertyPath: startLevel
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95c292c82ff9a5a4ba71e16ad732a4b1, type: 2}
   m_IsPrefabAsset: 0
