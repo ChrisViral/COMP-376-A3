@@ -45,6 +45,7 @@ namespace PlanetaryEscape.Players
         private int startLevel;
 
         //Private fields
+        private CameraShake shaker;
         private Rect screen;
         #endregion
 
@@ -52,8 +53,7 @@ namespace PlanetaryEscape.Players
         /// <summary>
         /// Current level of the player
         /// </summary>
-        public int Level { get; private set; }
-       
+        public int Level { get; private set; }     
         #endregion
 
         #region Methods
@@ -92,6 +92,10 @@ namespace PlanetaryEscape.Players
             if (this.invulnerable) { return false; }
 
             this.Log($"Die called at level {this.Level}");
+
+            //Shake the camera
+            this.shaker.Shake();
+
             //Make sure life is back to zero
             if (DecrementLevel() < 0)
             {
@@ -155,6 +159,7 @@ namespace PlanetaryEscape.Players
             this.Level = this.startLevel;
             this.screen = this.crosshairCanvas.rect;
             this.shield.gameObject.SetActive(true);
+            this.shaker = Camera.main.GetComponent<CameraShake>();
         }
 
         protected override void OnUpdate()

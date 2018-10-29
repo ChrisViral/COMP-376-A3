@@ -86,6 +86,7 @@
     <Compile Include="Assets\Scripts\Utils\AutoDestroyParticle.cs" />
     <Compile Include="Assets\Scripts\Utils\BackgroundScroller.cs" />
     <Compile Include="Assets\Scripts\Utils\Bounds.cs" />
+    <Compile Include="Assets\Scripts\Utils\CameraShake.cs" />
     <Compile Include="Assets\Scripts\Utils\ContactDestroy.cs" />
     <Compile Include="Assets\Scripts\Utils\DestroyOnExit.cs" />
     <Compile Include="Assets\Scripts\Utils\MaterialBlinker.cs" />
