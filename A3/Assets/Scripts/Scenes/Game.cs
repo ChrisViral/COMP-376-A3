@@ -1,14 +1,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using SpaceShooter.Physics;
-using SpaceShooter.Players;
-using SpaceShooter.UI;
-using SpaceShooter.Waves;
+using PlanetaryEscape.Players;
+using PlanetaryEscape.UI;
+using PlanetaryEscape.Waves;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SpaceShooter.Scenes
+namespace PlanetaryEscape.Scenes
 {
     /// <summary>
     /// Gameplay flow controller
@@ -20,8 +19,6 @@ namespace SpaceShooter.Scenes
         //Inspector fields
         [SerializeField, Header("Gameplay")]
         internal Player player;
-        [SerializeField]
-        private AccelerationMovement background;
         [SerializeField]
         private float endGameWait;
         [SerializeField, Header("UI")]
@@ -39,9 +36,9 @@ namespace SpaceShooter.Scenes
         [SerializeField, Header("Enemy waves")]
         private int waves;
         [SerializeField, Tooltip("Asteroid spawner")]
-        private GameObject asteroids;
+        private AsteroidWaveController asteroids;
         [SerializeField, Tooltip("Enemy spawners")]
-        private GameObject[] enemies;
+        private EnemyWaveController[] enemies;
         [SerializeField, Header("Powerup")]
         private GameObject powerup;
         [SerializeField]
@@ -57,7 +54,8 @@ namespace SpaceShooter.Scenes
         
         //Private fields
         private bool bossFight;
-        private WaveController asteroidController, enemyController;
+        private WaveController asteroidController;
+        private EnemyWaveController enemyController;
         #endregion
 
         #region Properties
@@ -72,7 +70,7 @@ namespace SpaceShooter.Scenes
         /// </summary>
         public int Score
         {
-            get { return this.score; }
+            get => this.score;
             set
             {
                 this.score = value;
@@ -117,8 +115,6 @@ namespace SpaceShooter.Scenes
             this.gameoverLabel.text = "Congratulations!";
 
             //Fade out screen
-            this.background.StartMovement(AccelerationMovement.MovementMode.ACCELERATE);
-            this.player.GetComponent<AccelerationMovement>().StartMovement(AccelerationMovement.MovementMode.ACCELERATE);
             this.uiAnimator.SetTrigger("End");
         }
 
@@ -149,7 +145,7 @@ namespace SpaceShooter.Scenes
         {
             if (this.waves-- > 0)
             {
-                this.enemyController = Instantiate(this.enemies[Random.Range(0, this.enemies.Length)]).GetComponent<WaveController>();
+                this.enemyController = Instantiate(this.enemies[Random.Range(0, this.enemies.Length)]);
                 this.enemyController.StartWave();
             }
             else { StartCoroutine(StartBossFight()); }
@@ -175,15 +171,21 @@ namespace SpaceShooter.Scenes
         /// <summary>
         /// Full enemy wave destroyed event
         /// </summary>
-        public void WaveDestroyed()
+        public void WaveDestroyed(bool successfully)
         {
-            this.Score *= 2;
-
-            if (this.player.Level < Player.MAX_LEVEL)
+            if (successfully)
             {
-                Instantiate(this.powerup, this.powerupSpawn, Quaternion.identity);
-                this.Log("A powerup has been created!");
+                this.Score *= 2;
+
+                if (this.player.Level < Player.MAX_LEVEL)
+                {
+                    Instantiate(this.powerup, this.powerupSpawn, Quaternion.identity);
+                    this.Log("A powerup has been created!");
+                }
             }
+
+            //Start the next wave
+            StartRandomController();
         }
 
         /// <summary>
@@ -228,18 +230,9 @@ namespace SpaceShooter.Scenes
             //Set important stuff
             this.uiAnimator.SetFloat("BossSpeed", this.bossUISpeed);
             this.uiAnimator.SetFloat("EndSpeed", this.endUISpeed);
-            this.background.StartMovement(AccelerationMovement.MovementMode.APPROACH);
-            this.asteroidController = Instantiate(this.asteroids).GetComponent<AsteroidWaveController>();
+            this.asteroidController = Instantiate(this.asteroids);
             this.asteroidController.StartWave();
             StartRandomController();
-        }
-
-        private void Update()
-        {
-            if (!this.bossFight && !this.enemyController.IsRunning)
-            {
-                    StartRandomController();
-            }
         }
 
         //Remove the OnPause event

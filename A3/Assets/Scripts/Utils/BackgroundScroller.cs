@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace SpaceShooter.Utils
+namespace PlanetaryEscape.Utils
 {
     /// <summary>
     /// Scrolls a background texture smoothly over time

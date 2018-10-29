@@ -10,7 +10,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>SpaceShooter</RootNamespace>
+    <RootNamespace>PlanetaryEscape</RootNamespace>
     <ProjectGuid>{F4D7F0A7-8EC2-9D66-B421-3E910DC54E92}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -54,7 +54,6 @@
   <ItemGroup>
     <Compile Include="Assets\_MK\MKGlow\Editor\MKGlowEditor.cs" />
     <Compile Include="Assets\JMO Assets\Cartoon FX Easy Editor\Editor\CFXEasyEditor.cs" />
-    <Compile Include="Assets\JMO Assets\WarFX\Editor\CFX_SpawnSystemEditor.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>E:/Chris/Documents/Repositories/COMP-376-A3/A3/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
@@ -307,6 +306,12 @@
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="CSharpVNextSupport">
+      <HintPath>E:/Chris/Documents/Repositories/COMP-376-A3/A3/Assets/CSharp vNext Support/Editor/CSharpVNextSupport.dll</HintPath>
+    </Reference>
+    <Reference Include="JMOAssets">
+      <HintPath>E:/Chris/Documents/Repositories/COMP-376-A3/A3/Assets/JMO Assets/Editor/JMOAssets.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.Advertisements">
       <HintPath>C:/Users/Chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>
     </Reference>
@@ -321,12 +326,6 @@
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>C:/Users/Chris/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
-    </Reference>
-    <Reference Include="CSharpVNextSupport">
-      <HintPath>E:/Chris/Documents/Repositories/COMP-376-A3/A3/Assets/CSharp vNext Support/Editor/CSharpVNextSupport.dll</HintPath>
-    </Reference>
-    <Reference Include="JMOAssets">
-      <HintPath>E:/Chris/Documents/Repositories/COMP-376-A3/A3/Assets/JMO Assets/Editor/JMOAssets.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>

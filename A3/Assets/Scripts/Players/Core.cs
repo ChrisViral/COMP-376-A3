@@ -1,5 +1,5 @@
 ﻿
-namespace SpaceShooter.Players
+namespace PlanetaryEscape.Players
 {
     /// <summary>
     /// Boss ship core

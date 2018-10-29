@@ -1,9 +1,9 @@
-﻿using SpaceShooter.Physics;
-using SpaceShooter.Players;
-using SpaceShooter.Waves;
+﻿using PlanetaryEscape.Physics;
+using PlanetaryEscape.Players;
+using PlanetaryEscape.Waves;
 using UnityEngine;
 
-namespace SpaceShooter.Utils
+namespace PlanetaryEscape.Utils
 {
     /// <summary>
     /// Contact destructor object
@@ -20,11 +20,6 @@ namespace SpaceShooter.Utils
         #endregion
 
         #region Properties
-        /// <summary>
-        /// The WaveListener this object is associated to
-        /// </summary>
-        public WaveListener Listener { get; internal set; }
-
         /// <summary>
         /// If this object has already exploded or not
         /// </summary>
@@ -62,21 +57,14 @@ namespace SpaceShooter.Utils
                     {
                         Explode();
                         GameLogic.CurrentGame.Score += this.points;
-                        if (this.Listener != null) { this.Listener.OnKilled(); }
                     }
                     break;
                     
                 //If player, kill player
                 case "Player":
-                    if (!other.GetComponent<Player>().Die()) { Explode(); }
+                    if (!other.transform.parent.GetComponent<Player>().Die()) { Explode(); }
                     break;
             }
-        }
-
-        private void OnDestroy()
-        {
-            //Let the listener know the object has been destroyed if any is present
-            if (this.Listener != null) { this.Listener.OnDestroyed(); }
         }
         #endregion
     }

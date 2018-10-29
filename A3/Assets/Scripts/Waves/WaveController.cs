@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace SpaceShooter.Waves
+namespace PlanetaryEscape.Waves
 {
     /// <summary>
     /// Enemy wave controller class
@@ -13,7 +13,7 @@ namespace SpaceShooter.Waves
         [SerializeField]
         protected float delay;
         [SerializeField]
-        protected Vector3 spawn;
+        protected Vector3 spawnLocation;
 
         //private fields
         private Coroutine spawnRoutine;

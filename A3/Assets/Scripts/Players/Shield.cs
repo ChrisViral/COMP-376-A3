@@ -1,8 +1,8 @@
-﻿using SpaceShooter.Physics;
-using SpaceShooter.Utils;
+﻿using PlanetaryEscape.Physics;
+using PlanetaryEscape.Utils;
 using UnityEngine;
 
-namespace SpaceShooter.Players
+namespace PlanetaryEscape.Players
 {
     /// <summary>
     /// Ship shield
@@ -90,8 +90,8 @@ namespace SpaceShooter.Players
                 switch (other.tag)
                 {
                     //Kill enemies
-                    case "Enemy":
-                        other.gameObject.GetComponent<ContactDestroy>()?.Explode();
+                    case "Asteroid":
+                        other.GetComponent<ContactDestroy>().Explode();
                         PlayClip();
                         break;
 
@@ -99,14 +99,6 @@ namespace SpaceShooter.Players
                     case "Projectile_Enemy":
                         Destroy(other.gameObject);
                         PlayClip();
-                        break;
-
-                    case "Projectile":
-                        if (GameLogic.IsHard && other.GetComponent<Bolt>().CanHurtPlayer)
-                        {
-                            Destroy(other.gameObject);
-                            PlayClip();
-                        }
                         break;
                 }
             }

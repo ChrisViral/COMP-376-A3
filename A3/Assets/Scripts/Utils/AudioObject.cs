@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace SpaceShooter.Utils
+namespace PlanetaryEscape.Utils
 {
     /// <summary>
     /// Audio object playing a single clip base class
@@ -23,7 +23,10 @@ namespace SpaceShooter.Utils
         /// <summary>
         /// Plays this object's clip at the given volume
         /// </summary>
-        public virtual void PlayClip() => this.source.PlayOneShot(this.clip, this.volume);
+        public virtual void PlayClip()
+        {
+            if (this.clip) { this.source.PlayOneShot(this.clip, this.volume); }
+        }
 
         /// <summary>
         /// This is called from within Awake, you should override this instead of writing an Awake() method

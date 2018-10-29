@@ -1,8 +1,8 @@
-﻿using SpaceShooter.Utils;
+﻿using PlanetaryEscape.Utils;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SpaceShooter.UI
+namespace PlanetaryEscape.UI
 {
     /// <summary>
     /// Progressbar

@@ -1,7 +1,7 @@
-﻿using SpaceShooter.Physics;
+﻿using PlanetaryEscape.Physics;
 using UnityEngine;
 
-namespace SpaceShooter.Players
+namespace PlanetaryEscape.Players
 {
     /// <summary>
     /// Ship base class
@@ -15,8 +15,14 @@ namespace SpaceShooter.Players
         protected float speed;
         [SerializeField]
         protected float tilt;
-        [SerializeField]
+        [SerializeField, Header("Death")]
         protected GameObject explosion;
+        [SerializeField]
+        protected GameObject smoke;
+        [SerializeField]
+        private Transform[] engines;
+        [SerializeField]
+        private AudioClip disabled;
         [SerializeField, Header("Fire")]
         protected GameObject bolt;
         [SerializeField]
@@ -26,22 +32,51 @@ namespace SpaceShooter.Players
         [SerializeField]
         protected Transform gun;
         public bool canShoot = true;
-        
+
         //Private fields
         protected AudioSource source;
         protected float nextFire;
         #endregion
 
+        #region Properties
+        /// <summary>
+        /// If the ship is freefalling to it's death
+        /// </summary>
+        public bool Controllable { get; set; } = true;
+        #endregion
+
         #region Methods
         /// <summary>
-        /// Kills the player
+        /// Kills the ship and sends it into freefall
         /// </summary>
+        /// <returns>True if the ship has been sent into freefall, false otherwise</returns>
         public virtual bool Die()
         {
             //Destroy object and create explosion
+            if (this.Controllable)
+            {
+                this.Controllable = false;
+                this.Rigidbody.useGravity = true;
+
+                //Replace engines by smoke
+                foreach (Transform engine in this.engines)
+                {
+                    Instantiate(this.smoke, engine.position, Quaternion.identity, engine.parent);
+                    engine.gameObject.SetActive(false);
+                }
+                this.source.PlayOneShot(this.disabled, 1f);
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Explodes this ship
+        /// </summary>
+        public virtual void Explode()
+        {
             Destroy(this.gameObject);
             Instantiate(this.explosion, this.transform.position, Quaternion.identity);
-            return true;
         }
 
         /// <summary>
@@ -60,7 +95,7 @@ namespace SpaceShooter.Players
 
             return false;
         }
-        
+
         /// <summary>
         /// Fires the ship's weapon
         /// </summary>
@@ -79,14 +114,17 @@ namespace SpaceShooter.Players
             //Get the audio source
             this.source = GetComponent<AudioSource>();
         }
-
-        //Fires the gun as soon as possible
-        protected override void OnUpdate() => FireGun();
+        
+        protected override void OnUpdate()
+        {
+            //Fires the gun as soon as possible
+            if (this.Controllable) { FireGun(); }
+        }
 
         protected override void OnFixedUpdate()
         {
             //Side tilt
-            this.rigidbody.rotation = Quaternion.Euler(0f, 0f, this.rigidbody.velocity.x * -this.tilt);
+            this.Rigidbody.rotation = Quaternion.Euler(0f, 0f, this.Rigidbody.velocity.x * -this.tilt);
         }
         #endregion
     }

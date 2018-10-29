@@ -20,13 +20,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4082885805471826}
   - component: {fileID: 114915710721668932}
-  - component: {fileID: 114187307828168438}
   m_Layer: 0
   m_Name: FormationSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4082885805471826
 Transform:
@@ -41,17 +40,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114187307828168438
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1879099602090938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fab69126f7d6e554f9272114d7ace654, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114915710721668932
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -63,10 +51,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95a4ea328e0102e43831734234379baa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 7
-  spawn: {x: 0, y: 0, z: 17}
-  enemy: {fileID: 1646578850731952, guid: c348e733a6fe3e74790b1ab94154339e, type: 2}
+  delay: 2
+  spawnLocation: {x: 0, y: 0.5, z: 40}
+  enemy: {fileID: 114484441090378254, guid: fef2a77a71c2ccf4796c05a0a058a6b6, type: 2}
   interval: 0.7
-  listener: {fileID: 114187307828168438}
+  heightVariation: 1.5
   spacing: 2
   layers: 3

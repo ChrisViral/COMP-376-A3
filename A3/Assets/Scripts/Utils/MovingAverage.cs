@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace SpaceShooter.Utils
+namespace PlanetaryEscape.Utils
 {
     /// <summary>
     /// A moving average, who's value is the average of a set number of previous values

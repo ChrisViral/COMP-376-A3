@@ -1,7 +1,9 @@
 ﻿using System.Collections;
+using PlanetaryEscape.Physics;
+using PlanetaryEscape.Waves;
 using UnityEngine;
 
-namespace SpaceShooter.Players
+namespace PlanetaryEscape.Players
 {
     /// <summary>
     /// Enemy ship
@@ -11,23 +13,45 @@ namespace SpaceShooter.Players
     {
         #region Fields
         //Inspector fields
+        [SerializeField, Header("Points")]
+        private int score;
         [SerializeField, Header("Shooting delay")]
         private float minDelay;
         [SerializeField]
         private float maxDelay;
-        [SerializeField]
-        private float range;
+        #endregion
 
-        //Private fields
-        private Player player;
+        #region Properties
+        /// <summary>
+        /// The WaveListener this object is associated to this enemy
+        /// </summary>
+        public EnemyWaveController Spawner { get; internal set; }
+        #endregion
+
+        #region Methods
+        /// <summary>
+        /// Kills the enemy and sends it into freefall
+        /// </summary>
+        /// <returns>True if the ship has been sent into freefall, false otherwise</returns>
+        public override bool Die()
+        {
+            //Check if the enemy does die
+            if (base.Die())
+            {
+                //Add score
+                GameLogic.CurrentGame.Score += this.score;
+                if (this.Spawner != null) { this.Spawner.OnKilled(); }
+                GetComponent<Animator>().enabled = false;
+                return true;
+            }
+
+            return false;
+        }
         #endregion
 
         #region Functions
         private IEnumerator Start()
         {
-            //Get player instance;
-            this.player = GameLogic.CurrentGame.player;
-
             //If the Enemy is allowed to shoot
             if (this.canShoot)
             {
@@ -38,18 +62,19 @@ namespace SpaceShooter.Players
             }
         }
 
-        protected override void OnUpdate()
+        private void OnTriggerEnter(Collider other)
         {
-            //Normal mode
-            if (!GameLogic.IsHard) { base.OnUpdate(); }
-            else if (this.player != null)
+            //If hit by a projectile, die
+            if (other.CompareTag("Projectile") && other.GetComponent<Bolt>().Active)
             {
-                //Fire when close on the X axis in front of the player
-                if (Mathf.Abs(this.player.transform.position.x - this.transform.position.x) <= this.range && this.player.transform.position.z < this.transform.position.z)
-                {
-                    FireGun();
-                }
+                Die();
             }
+        }
+
+        private void OnDestroy()
+        {
+            //Let the listener know the object has been destroyed if any is present
+            if (this.Spawner != null) { this.Spawner.OnDestroyed(); }
         }
         #endregion
     }

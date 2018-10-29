@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using SpaceShooter.Extensions;
+using PlanetaryEscape.Extensions;
 using UnityEngine;
 
-namespace SpaceShooter
+namespace PlanetaryEscape
 {
     /// <summary>
     /// The highscore controller
@@ -364,7 +364,7 @@ namespace SpaceShooter
                 //Catch parse exceptions
                 catch (Exception e)
                 {
-                    this.LogException(e, "Error encountered while loading Highscore");
+                    this.LogException(e);
                 }
             }
 

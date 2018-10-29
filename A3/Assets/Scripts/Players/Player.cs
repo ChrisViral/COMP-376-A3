@@ -1,9 +1,11 @@
-﻿using SpaceShooter.Physics;
+﻿using PlanetaryEscape.Extensions;
+using PlanetaryEscape.Physics;
+using PlanetaryEscape.Utils;
 using UnityEngine;
-using UnityEngine.UI;
-using Bounds = SpaceShooter.Utils.Bounds;
+using Bounds = PlanetaryEscape.Utils.Bounds;
+using Physic = UnityEngine.Physics;
 
-namespace SpaceShooter.Players
+namespace PlanetaryEscape.Players
 {
     /// <summary>
     /// Player object
@@ -20,29 +22,38 @@ namespace SpaceShooter.Players
         #region Fields
         //Inspector fields
         [SerializeField, Header("Player")]
-        private Bounds gameLimits; 
+        private Bounds gameLimits;
+        [SerializeField]
+        private float acceleration;
         [SerializeField]
         private Shield shield;
+        [SerializeField]
+        private Camera playerCamera;
+        [SerializeField]
+        private RectTransform crosshairCanvas, crosshair;
+        [SerializeField]
+        private LayerMask enemyLayer;
         [SerializeField]
         private Animator[] lives;
         [SerializeField, Header("Powerup")]
         private AudioClip powerupSound;
         [SerializeField]
         private float powerupVolume;
-        [SerializeField]
+        [SerializeField, Header("Cheats")]
         private bool invulnerable;
+        [SerializeField, Range(0, MAX_LEVEL)]
+        private int startLevel;
+
+        //Private fields
+        private CameraShake shaker;
+        private Rect screen;
         #endregion
 
         #region Properties
         /// <summary>
         /// Current level of the player
         /// </summary>
-        public int Level { get; private set; }
-
-        /// <summary>
-        /// If the Player can currently be controlled
-        /// </summary>
-        public bool Controllable { get; set; } = true;
+        public int Level { get; private set; }     
         #endregion
 
         #region Methods
@@ -81,18 +92,32 @@ namespace SpaceShooter.Players
             if (this.invulnerable) { return false; }
 
             this.Log($"Die called at level {this.Level}");
+
+            //Shake the camera
+            this.shaker.Shake();
+
             //Make sure life is back to zero
             if (DecrementLevel() < 0)
             {
                 //Call base method
+                this.Rigidbody.drag = 0f;
                 base.Die();
                 //Notify for the game to end
-                GameLogic.CurrentGame.EndGame();
+                //GameLogic.CurrentGame.EndGame();
                 return true;
             }
 
             this.shield.TriggerShield();
             return false;
+        }
+
+        /// <summary>
+        /// Kills the player
+        /// </summary>
+        public override void Explode()
+        {
+            GameLogic.CurrentGame.EndGame();
+            base.Explode();
         }
 
         /// <summary>
@@ -128,15 +153,37 @@ namespace SpaceShooter.Players
 
         #region Functions
         //Set first life indicator to true
-        private void Start() => this.lives[0].SetTrigger("Toggle");
+        private void Start()
+        {
+            this.lives[0].SetTrigger("Toggle");
+            this.Level = this.startLevel;
+            this.screen = this.crosshairCanvas.rect;
+            this.shield.gameObject.SetActive(true);
+            this.shaker = Camera.main.GetComponent<CameraShake>();
+        }
 
         protected override void OnUpdate()
         {
             //If fire is pressed and enough time has elapsed since last fire, spawn a new shot
-            if (this.Controllable && Input.GetButton("Fire1"))
+            if (this.Controllable)
             {
-                FireGun();
+                if (Input.GetButton("Fire")) { FireGun(); }
+                
+                Vector3 screenPosition;
+                if (Physic.Raycast(this.gun.position, this.gun.forward, out RaycastHit hit, 90f, this.enemyLayer, QueryTriggerInteraction.Collide))
+                {
+                    screenPosition = hit.point;
+                }
+                else
+                {
+                    screenPosition = this.transform.position;
+                    screenPosition.z += 90f;
+                }
+
+                screenPosition = this.playerCamera.WorldToViewportPoint(screenPosition);
+                this.crosshair.anchoredPosition = new Vector2(screenPosition.x * this.screen.width, screenPosition.y  * this.screen.height);
             }
+            
         }
         
         protected override void OnFixedUpdate()
@@ -144,24 +191,31 @@ namespace SpaceShooter.Players
             if (this.Controllable)
             {
                 //Movement speed
-                this.rigidbody.velocity = new Vector3(Input.GetAxis("Horizontal") * this.speed, 0f, Input.GetAxis("Vertical") * this.speed);
+                this.Rigidbody.AddForce(new Vector3(Input.GetAxis("Horizontal") * this.acceleration, Input.GetAxis("Vertical") * this.acceleration));
+                this.Rigidbody.velocity.ClampTo(this.speed);
+
                 //Limit to game bounds
-                this.rigidbody.position = this.gameLimits.BoundVector(this.rigidbody.position);
-                //Call Ship.FixedUpdate()
-                base.OnFixedUpdate();
+                this.Rigidbody.position = this.gameLimits.BoundVector(this.Rigidbody.position);
             }
+
+            //Call Ship.OnFixedUpdate()
+            base.OnFixedUpdate();
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            if (this.invulnerable) { return; }
-
             //If the shield is inactive and hit, damage player
-            if (this.Controllable && !this.shield.Active)
+            if (!this.invulnerable && this.Controllable && !this.shield.Active)
             {
-                if (other.CompareTag("Projectile_Enemy") || (GameLogic.IsHard && other.CompareTag("Projectile") && other.GetComponent<Bolt>().CanHurtPlayer))
+                switch (other.tag)
                 {
-                    Die();
+                    case "Projectile_Enemy":
+                        if (other.GetComponent<Bolt>().Active) { Die(); }
+                        break;
+
+                    case "Enemy":
+                        if (!Die()) { other.GetComponent<Enemy>().Die(); }
+                        break;
                 }
             }
         }

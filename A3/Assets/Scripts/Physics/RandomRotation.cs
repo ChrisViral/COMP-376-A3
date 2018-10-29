@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace SpaceShooter.Physics
+namespace PlanetaryEscape.Physics
 {
     /// <summary>
     /// Gives an object a random rotation upon load
@@ -16,7 +16,7 @@ namespace SpaceShooter.Physics
 
         #region Functions
         //Give the Rigidbody a random angular velocity
-        private void Start() => this.rigidbody.angularVelocity = Random.insideUnitSphere * this.maxRotation;
+        private void Start() => this.Rigidbody.angularVelocity = Random.insideUnitSphere * this.maxRotation;
         #endregion
     }
 }

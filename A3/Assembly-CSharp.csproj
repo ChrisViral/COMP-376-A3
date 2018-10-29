@@ -10,7 +10,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>SpaceShooter</RootNamespace>
+    <RootNamespace>PlanetaryEscape</RootNamespace>
     <ProjectGuid>{4C8C19FE-A815-F22E-00EA-48B5185D855D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -56,21 +56,18 @@
     <Compile Include="Assets\CSharp vNext Support\AsyncTools\AsyncTools.cs" />
     <Compile Include="Assets\CSharp vNext Support\AsyncTools\NextFrameHelper.cs" />
     <Compile Include="Assets\CSharp vNext Support\AsyncTools\UnityTaskScheduler.cs" />
-    <Compile Include="Assets\JMO Assets\WarFX\Scripts\CFX_AutoDestructShuriken.cs" />
     <Compile Include="Assets\JMO Assets\WarFX\Scripts\CFX_LightIntensityFade.cs" />
-    <Compile Include="Assets\JMO Assets\WarFX\Scripts\WFX_BulletHoleDecal.cs" />
     <Compile Include="Assets\JMO Assets\WarFX\Scripts\WFX_LightFlicker.cs" />
-    <Compile Include="Assets\JMO Assets\WarFX\Spawn System\CFX_SpawnSystem.cs" />
     <Compile Include="Assets\Scripts\Extensions\MonoBehaviourExtensions.cs" />
     <Compile Include="Assets\Scripts\Extensions\StreamReaderExtensions.cs" />
+    <Compile Include="Assets\Scripts\Extensions\VectorExtensions.cs" />
     <Compile Include="Assets\Scripts\GameLogic.cs" />
     <Compile Include="Assets\Scripts\HighscoreController.cs" />
-    <Compile Include="Assets\Scripts\Physics\AccelerationMovement.cs" />
     <Compile Include="Assets\Scripts\Physics\Bolt.cs" />
     <Compile Include="Assets\Scripts\Physics\FigureEightMovement.cs" />
     <Compile Include="Assets\Scripts\Physics\PhysicsObject.cs" />
     <Compile Include="Assets\Scripts\Physics\RandomRotation.cs" />
-    <Compile Include="Assets\Scripts\Physics\SinusoidalMovement.cs" />
+    <Compile Include="Assets\Scripts\Physics\SideMovement.cs" />
     <Compile Include="Assets\Scripts\Physics\StraightMovement.cs" />
     <Compile Include="Assets\Scripts\Players\Boss.cs" />
     <Compile Include="Assets\Scripts\Players\Core.cs" />
@@ -89,19 +86,20 @@
     <Compile Include="Assets\Scripts\Utils\AutoDestroyParticle.cs" />
     <Compile Include="Assets\Scripts\Utils\BackgroundScroller.cs" />
     <Compile Include="Assets\Scripts\Utils\Bounds.cs" />
-    <Compile Include="Assets\Scripts\Utils\CameraAspectRatio.cs" />
+    <Compile Include="Assets\Scripts\Utils\CameraShake.cs" />
     <Compile Include="Assets\Scripts\Utils\ContactDestroy.cs" />
-    <Compile Include="Assets\Scripts\Utils\GameBoundary.cs" />
+    <Compile Include="Assets\Scripts\Utils\DestroyOnExit.cs" />
     <Compile Include="Assets\Scripts\Utils\MaterialBlinker.cs" />
     <Compile Include="Assets\Scripts\Utils\MovingAverage.cs" />
     <Compile Include="Assets\Scripts\Utils\PausableObject.cs" />
+    <Compile Include="Assets\Scripts\Utils\PlayerGroundCheck.cs" />
     <Compile Include="Assets\Scripts\Utils\ProjectileDestroyer.cs" />
+    <Compile Include="Assets\Scripts\Utils\ShipDestroyer.cs" />
     <Compile Include="Assets\Scripts\Waves\AsteroidWaveController.cs" />
     <Compile Include="Assets\Scripts\Waves\EnemyWaveController.cs" />
     <Compile Include="Assets\Scripts\Waves\FormationController.cs" />
-    <Compile Include="Assets\Scripts\Waves\SinusoidalController.cs" />
+    <Compile Include="Assets\Scripts\Waves\SidewaysController.cs" />
     <Compile Include="Assets\Scripts\Waves\WaveController.cs" />
-    <Compile Include="Assets\Scripts\Waves\WaveListener.cs" />
     <None Include="Assets\_MK\MKGlow\Shader\Variants_Luminance\MK_LuminanceEmissive.shader" />
     <None Include="Assets\_MK\MKGlow\Shader\Variants_Selective\Illumin\MK_Illumin-Glossy.shader" />
     <None Include="Assets\_MK\MKGlow\Shader\Render\MKGlowExtractLuminance.shader" />

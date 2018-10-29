@@ -1,10 +1,12 @@
-﻿using System.Text;
-using SpaceShooter.Scenes;
+﻿using System;
+using System.Text;
+using PlanetaryEscape.Extensions;
+using PlanetaryEscape.Scenes;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace SpaceShooter
+namespace PlanetaryEscape
 {
     /// <summary>
     /// Game Scenes
@@ -31,17 +33,11 @@ namespace SpaceShooter
     [DisallowMultipleComponent, RequireComponent(typeof(AudioSource))]
     public sealed class GameLogic : Singleton<GameLogic>
     {
-        #region Events
-        /// <summary>
-        /// OnPause Delegate
-        /// </summary>
-        /// <param name="state">The current state of the game (paused or not)</param>
-        public delegate void PauseDelegate(bool paused);
-
+        #region
         /// <summary>
         /// On game pause event
         /// </summary>
-        public static event PauseDelegate OnPause;
+        public static event Action<bool> OnPause;
         #endregion
 
         #region Static Properties

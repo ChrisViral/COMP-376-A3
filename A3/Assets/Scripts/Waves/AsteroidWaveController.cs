@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace SpaceShooter.Waves
+namespace PlanetaryEscape.Waves
 {
     /// <summary>
     /// Asteroid generation wave controller
@@ -10,6 +10,8 @@ namespace SpaceShooter.Waves
     {
         #region Fields
         //Inspector fields
+        [SerializeField]
+        private Vector2 spawnSize;
         [SerializeField]
         private GameObject[] asteroids;
         [SerializeField, Tooltip("Max amount of asteroids spawned at once"), Range(1, 4)]
@@ -45,7 +47,7 @@ namespace SpaceShooter.Waves
         /// Create a random spawn vector within the specified range
         /// </summary>
         /// <returns>A random Vector3 in the spawn range</returns>
-        private Vector3 RandomSpawn() => new Vector3(Random.Range(this.spawn.x, this.spawn.y), 0f, this.spawn.z);
+        private Vector3 RandomSpawn() => new Vector3(this.spawnLocation.x + (Random.value - 0.5f) * this.spawnSize.x, this.spawnLocation.y + (Random.value - 0.5f) * this.spawnSize.y, this.spawnLocation.z);
 
         /// <summary>
         /// Asteroid wave generator

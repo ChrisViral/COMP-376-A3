@@ -1,17 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
-using SpaceShooter.Physics;
-using SpaceShooter.Scenes;
-using SpaceShooter.UI;
-using SpaceShooter.Utils;
+using PlanetaryEscape.Physics;
+using PlanetaryEscape.Scenes;
+using PlanetaryEscape.UI;
+using PlanetaryEscape.Utils;
 using UnityEngine;
 
-namespace SpaceShooter.Players
+namespace PlanetaryEscape.Players
 {
     /// <summary>
     /// Boss ship
     /// </summary>
-    [DisallowMultipleComponent, RequireComponent(typeof(FigureEightMovement), typeof(AccelerationMovement))]
+    [DisallowMultipleComponent, RequireComponent(typeof(FigureEightMovement))]
     public class Boss : Ship
     {
         #region Fields
@@ -42,6 +42,7 @@ namespace SpaceShooter.Players
         private int hp;
         private float maxHP;
         private Progressbar healthbar;
+        private FigureEightMovement movement;
         #endregion
         
         #region Properties
@@ -61,6 +62,25 @@ namespace SpaceShooter.Players
         #endregion
 
         #region Methods
+        /// <summary>
+        /// Starts the fight coroutine
+        /// </summary>
+        private void StartFight() => StartCoroutine(StartFightDelayed());
+
+        /// <summary>
+        /// Fight start coroutine-
+        /// </summary>
+        private IEnumerator<YieldInstruction> StartFightDelayed()
+        {
+            //Start moving
+            this.movement.enabled = true;
+
+            //Wait the delay then start shooting and add vulnerabilities
+            yield return new WaitForSeconds(this.vulnerabilityDelay);
+            this.canShoot = true;
+            AddVulnerabilities();
+        }
+
         /// <summary>
         /// Adds new vulnerabilities to the boss ship
         /// </summary>
@@ -146,21 +166,27 @@ namespace SpaceShooter.Players
         /// <summary>
         /// Die event
         /// </summary>
-        /// <returns>Always true</returns>
+        /// <returns>True if the boss dies</returns>
         public override bool Die()
         {
-            //Spawn the given number of explosions, randomly
-            for (int i = 0; i < this.explosionCount; i++)
+            if (base.Die())
             {
-                Instantiate(this.explosion, this.transform.position + new Vector3(Random.Range(-4f, 4f), 0f, Random.Range(-2f, 2f)), Quaternion.identity);
+                //Stop movement
+                this.movement.enabled = false;
+                GameLogic.CurrentGame.Score += this.score;
+                return true;
             }
 
-            //Clean out the remaining stuff
-            Game game = GameLogic.CurrentGame;
-            game.Score += this.score;
-            game.EndGame(true);
-            Destroy(this.gameObject);
-            return true;
+            return false;
+        }
+
+        /// <summary>
+        /// Explodes the boss ship and ends the game
+        /// </summary>
+        public override void Explode()
+        {
+            GameLogic.CurrentGame.EndGame(true);
+            base.Explode();
         }
 
         /// <summary>
@@ -194,25 +220,13 @@ namespace SpaceShooter.Players
         #endregion
 
         #region Functions
-        private IEnumerator Start()
+        private void Start()
         {
             //Setup boss
             this.player = GameLogic.CurrentGame.player;
             this.healthbar = GameLogic.CurrentGame.bossProgressbar;
             this.maxHP = this.hp = this.maxHealth * (GameLogic.IsHard ? 2 : 1);
-
-            //Setup arrival, then wait for arrival
-            AccelerationMovement mover = GetComponent<AccelerationMovement>();
-            mover.StartMovement(AccelerationMovement.MovementMode.APPROACH);
-            yield return new WaitForSeconds(Mathf.Abs(mover.approachSpeed / mover.acceleration));
-
-            //Start moving then wait before shooting
-            GetComponent<FigureEightMovement>().enabled = true;
-            yield return new WaitForSeconds(this.vulnerabilityDelay);
-
-            //Add vulnerabilities and start shooting
-            AddVulnerabilities();
-            this.canShoot = true;
+            this.movement = GetComponent<FigureEightMovement>();
         }
         #endregion
     }

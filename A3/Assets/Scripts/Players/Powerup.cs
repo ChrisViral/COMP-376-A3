@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace SpaceShooter.Players
+namespace PlanetaryEscape.Players
 {
     /// <summary>
     /// Powerup
@@ -21,7 +21,7 @@ namespace SpaceShooter.Players
             //When colliding with the player, upgrade him
             if (this.Active && other.CompareTag("Player"))
             {
-                other.GetComponent<Player>().IncrementLevel();
+                other.GetComponentInParent<Player>().IncrementLevel();
                 this.Active = false;
                 Destroy(this.gameObject);
             }

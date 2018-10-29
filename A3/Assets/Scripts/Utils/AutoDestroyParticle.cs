@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace SpaceShooter.Utils
+namespace PlanetaryEscape.Utils
 {
     /// <summary>
     /// Particle auto destroyer
